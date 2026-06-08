@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Score de Energia & Sono | Jaqueline Ferreira Nutricionista</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--v:#2D6B52;--v2:#3A8A6A;--vp:#E8F4EF;--b:#6B2737;--cr:#FAF8F5;--tx:#1A1A18;--txm:#4A4845;--txs:#8A8785;--br:rgba(26,26,24,0.10);--br2:rgba(26,26,24,0.18);--am:#C08020;--amp:#FDF5E6;--rd:#8B2E2E;--rdp:#FBF0F0;--r:12px;--rt:18px;--sh:0 2px 16px rgba(26,26,24,0.08)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--tx);min-height:100vh;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(45,107,82,0.04) 79px,rgba(45,107,82,0.04) 80px);pointer-events:none;z-index:0}
+.wrap{max-width:580px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+header{padding:28px 0 20px;text-align:center;border-bottom:.5px solid var(--br);margin-bottom:36px}
+.logo{font-family:'Libre Baskerville',serif;font-style:italic;font-size:13px;color:var(--v);letter-spacing:.04em}
+.logo-line{width:28px;height:.5px;background:var(--v);margin:7px auto;opacity:.4}
+.logo-sub{font-size:10px;color:var(--txs);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.intro-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--v);background:var(--vp);padding:4px 12px;border-radius:20px;margin-bottom:20px}
+.intro-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--v);animation:pulse 2s ease infinite}
+.intro-headline{font-family:'Libre Baskerville',serif;font-size:30px;font-weight:700;line-height:1.2;margin-bottom:10px}
+.intro-headline em{font-style:italic;color:var(--b)}
+.intro-sub{font-family:'Libre Baskerville',serif;font-style:italic;font-size:17px;color:var(--txm);margin-bottom:24px;line-height:1.5}
+.intro-divider{width:40px;height:1px;background:var(--v);opacity:.3;margin:24px 0}
+.intro-body{font-size:14px;color:var(--txm);line-height:1.8;margin-bottom:28px}
+.intro-body strong{color:var(--tx);font-weight:500}
+.intro-receives{background:#fff;border:.5px solid var(--br2);border-radius:var(--r);padding:18px 20px;margin-bottom:28px;box-shadow:var(--sh)}
+.intro-receives-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txs);margin-bottom:12px}
+.intro-receives-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.intro-receives-list li{font-size:13.5px;color:var(--txm);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.intro-receives-list li::before{content:'→';color:var(--v);font-weight:500;flex-shrink:0}
+.intro-meta{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.intro-meta-item{font-size:12px;color:var(--txs);display:flex;align-items:center;gap:6px}
+.intro-meta-dot{width:4px;height:4px;border-radius:50%;background:var(--v);flex-shrink:0}
+.btn-start{width:100%;background:var(--v);border:none;border-radius:var(--r);padding:16px;font-size:15px;font-weight:500;color:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;box-shadow:0 6px 20px rgba(45,107,82,.28)}
+.btn-start:hover{background:var(--v2);transform:translateY(-2px)}
+.prog-wrap{margin:20px 0 28px}
+.prog-top{display:flex;justify-content:space-between;font-size:12px;color:var(--txs);margin-bottom:8px}
+.prog-track{height:2px;background:var(--br);border-radius:1px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--v),var(--v2));border-radius:1px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.q-wrap{animation:fadeUp .35s ease}
+.q-num{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--v);margin-bottom:6px}
+.q-bloco{font-size:10px;color:var(--txs);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.q-text{font-family:'Libre Baskerville',serif;font-size:18px;line-height:1.5;color:var(--tx);margin-bottom:22px}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.opt{background:#fff;border:.5px solid var(--br2);border-radius:var(--r);padding:13px 16px;font-size:13.5px;color:var(--txm);cursor:pointer;text-align:left;transition:all .18s ease;display:flex;align-items:center;gap:12px;font-family:'DM Sans',sans-serif}
+.opt-circle{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--br2);flex-shrink:0;transition:all .18s;display:flex;align-items:center;justify-content:center}
+.opt:hover,.opt.sel{border-color:var(--v);background:var(--vp);color:var(--v)}
+.opt.sel{font-weight:500}
+.opt.sel .opt-circle{border-color:var(--v);background:var(--v)}
+.opt.sel .opt-circle::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.btn-back{background:transparent;border:none;font-size:13px;color:var(--txs);cursor:pointer;padding:8px 0;font-family:'DM Sans',sans-serif}
+.btn-next{background:var(--v);border:none;border-radius:var(--r);padding:12px 28px;font-size:13.5px;font-weight:500;color:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;box-shadow:0 4px 14px rgba(45,107,82,.25)}
+.btn-next:hover{background:var(--v2);transform:translateY(-1px)}
+.btn-next:disabled{background:var(--br);color:var(--txs);cursor:not-allowed;box-shadow:none;transform:none}
+.lead-card{background:#fff;border:.5px solid var(--br2);border-radius:var(--rt);padding:28px 24px;margin-bottom:16px;box-shadow:var(--sh)}
+.lead-title{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.lead-desc{font-size:13.5px;color:var(--txm);line-height:1.7;margin-bottom:24px}
+.field-group{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.field-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--txs);margin-bottom:5px}
+.field-input{width:100%;background:var(--cr);border:.5px solid var(--br2);border-radius:8px;padding:13px 16px;font-size:14px;color:var(--tx);font-family:'DM Sans',sans-serif;transition:border-color .18s;outline:none}
+.field-input:focus{border-color:var(--v);background:#fff}
+.field-input::placeholder{color:var(--txs)}
+.btn-result{width:100%;background:var(--v);border:none;border-radius:var(--r);padding:14px;font-size:14px;font-weight:500;color:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;box-shadow:0 4px 14px rgba(45,107,82,.25)}
+.btn-result:disabled{opacity:.5;cursor:not-allowed}
+.privacy{font-size:11px;color:var(--txs);text-align:center;margin-top:10px;line-height:1.6}
+.score-hero{background:#fff;border:.5px solid var(--br2);border-radius:var(--rt);padding:24px;margin-bottom:16px;box-shadow:var(--sh)}
+.score-hero-tag{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txs);margin-bottom:16px}
+.score-row{display:flex;align-items:flex-end;gap:12px;margin-bottom:16px}
+.score-num{font-family:'Libre Baskerville',serif;font-size:72px;line-height:1;font-weight:700}
+.score-meta{padding-bottom:10px}
+.score-meta-label{font-size:13px;color:var(--txs);line-height:1.4}
+.score-badge{display:inline-block;font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;margin-top:5px;letter-spacing:.06em}
+.b-verde{background:var(--vp);color:var(--v)}
+.b-amber{background:var(--amp);color:var(--am)}
+.b-red{background:var(--rdp);color:var(--rd)}
+.seg-bar{display:flex;gap:3px;height:6px;border-radius:3px;overflow:hidden;margin-bottom:6px}
+.seg{flex:1;border-radius:2px}
+.seg-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--txs);margin-bottom:16px}
+.score-intro{font-size:14px;color:var(--txm);line-height:1.75;border-top:.5px solid var(--br);padding-top:16px}
+.perfil-card{border-radius:var(--rt);padding:20px;margin-bottom:14px;border:.5px solid var(--br2)}
+.perfil-tag{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.perfil-titulo{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.perfil-texto{font-size:13.5px;line-height:1.8;color:var(--txm)}
+.dims-section{margin-bottom:16px}
+.dims-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txs);margin-bottom:10px}
+.dims-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.dim-card{background:#fff;border:.5px solid var(--br2);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh)}
+.dim-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--txs);margin-bottom:6px}
+.dim-bar-wrap{height:3px;background:var(--br);border-radius:2px;overflow:hidden;margin-bottom:6px}
+.dim-bar{height:100%;border-radius:2px}
+.dim-val{font-size:12px;color:var(--txm);font-weight:500}
+.narrativa-section{background:#fff;border:.5px solid var(--br2);border-radius:var(--rt);padding:24px;margin-bottom:14px;box-shadow:var(--sh)}
+.narrativa-section-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txs);margin-bottom:20px}
+.narrativa-bloco{margin-bottom:24px;padding-bottom:24px;border-bottom:.5px solid var(--br)}
+.narrativa-bloco:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.narrativa-dim-tag{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.narrativa-texto{font-size:14px;color:var(--txm);line-height:1.85}
+.narrativa-texto strong{color:var(--tx);font-weight:500}
+.ponte-card{background:#fff;border:.5px solid var(--br2);border-radius:var(--rt);padding:24px;margin-bottom:14px;box-shadow:var(--sh)}
+.ponte-title{font-family:'Libre Baskerville',serif;font-size:18px;font-weight:700;margin-bottom:12px;line-height:1.3;color:var(--tx)}
+.ponte-texto{font-size:14px;color:var(--txm);line-height:1.85;margin-bottom:16px}
+.ponte-texto strong{color:var(--tx);font-weight:500}
+.cta-card{background:var(--v);border-radius:var(--rt);padding:28px 24px;margin-bottom:20px;box-shadow:0 8px 28px rgba(45,107,82,.28)}
+.cta-card h2{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.3}
+.cta-card p{font-size:14px;color:rgba(255,255,255,.84);line-height:1.8;margin-bottom:16px}
+.btn-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#fff;border:none;border-radius:var(--r);padding:15px;font-size:14px;font-weight:500;color:var(--v);cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:opacity .2s}
+.btn-cta:hover{opacity:.92}
+.btn-refazer{display:block;width:100%;background:transparent;border:.5px solid var(--br2);border-radius:var(--r);padding:12px;font-size:13px;color:var(--txs);cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:36px}
+.disclaimer{font-size:11px;color:var(--txs);line-height:1.7;text-align:center;padding:0 8px}
+footer{border-top:.5px solid var(--br);padding:22px 0;text-align:center;margin-top:8px}
+.footer-logo{font-family:'Libre Baskerville',serif;font-style:italic;font-size:12px;color:var(--v);margin-bottom:5px}
+.footer-insta{font-size:11px;color:var(--txs)}
+@media(max-width:480px){.intro-headline{font-size:24px}.score-num{font-size:56px}.dims-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="logo">jaqueline ferreira</div>
+  <div class="logo-line"></div>
+  <div class="logo-sub">nutricionista · CRN</div>
+</header>
+
+<!-- INTRO -->
+<div id="screen-intro">
+  <div class="intro-tag"><span class="intro-tag-dot"></span>diagnóstico gratuito</div>
+  <h1 class="intro-headline">Seu cansaço tem<br><em>uma causa.</em></h1>
+  <p class="intro-sub">Descubra o que está por trás do seu sono e da sua falta de energia.</p>
+  <div class="intro-divider"></div>
+  <p class="intro-body">Responda com sinceridade. No final você recebe um <strong>retrato completo</strong> do que está comprometendo seu sono, sua energia e seu bem-estar — e qual é o seu próximo passo real.</p>
+  <div class="intro-receives">
+    <p class="intro-receives-title">Você vai descobrir</p>
+    <ul class="intro-receives-list">
+      <li>Seu score de energia e sono de 0 a 100</li>
+      <li>Se seus sintomas têm origem hormonal, intestinal ou ambos</li>
+      <li>Por que você acorda cansada mesmo dormindo horas</li>
+      <li>A conexão entre seu intestino e a qualidade do seu sono</li>
+      <li>Qual é o seu próximo passo concreto</li>
+    </ul>
+  </div>
+  <div class="intro-meta">
+    <span class="intro-meta-item"><span class="intro-meta-dot"></span>10 perguntas</span>
+    <span class="intro-meta-item"><span class="intro-meta-dot"></span>Menos de 3 minutos</span>
+    <span class="intro-meta-item"><span class="intro-meta-dot"></span>Resultado imediato</span>
+    <span class="intro-meta-item"><span class="intro-meta-dot"></span>100% gratuito</span>
+  </div>
+  <button class="btn-start" onclick="startQuiz()">→ Iniciar meu diagnóstico</button>
+</div>
+
+<!-- QUIZ -->
+<div id="screen-quiz" style="display:none">
+  <div class="prog-wrap">
+    <div class="prog-top"><span id="prog-label">Pergunta 1 de 10</span><span id="prog-pct">0%</span></div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div class="q-wrap" id="q-wrap">
+    <div class="q-num" id="q-num"></div>
+    <div class="q-bloco" id="q-bloco"></div>
+    <p class="q-text" id="q-text"></p>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="nav">
+    <button class="btn-back" id="btn-back" onclick="goBack()" style="visibility:hidden">← Voltar</button>
+    <button class="btn-next" id="btn-next" onclick="goNext()" disabled>Próxima →</button>
+  </div>
+</div>
+
+<!-- LEAD -->
+<div id="screen-lead" style="display:none">
+  <div class="lead-card">
+    <p class="lead-title">Seu resultado está pronto 🌿</p>
+    <p class="lead-desc">Antes de revelar sua classificação e a análise personalizada, preciso de algumas informações.</p>
+    <div class="field-group">
+      <div><p class="field-label">Seu primeiro nome</p><input class="field-input" type="text" id="field-nome" placeholder="Como posso te chamar?" autocomplete="given-name"></div>
+      <div><p class="field-label">WhatsApp com DDD</p><input class="field-input" type="tel" id="field-zap" placeholder="(35) 99999-9999" autocomplete="tel"></div>
+      <div><p class="field-label">E-mail (opcional)</p><input class="field-input" type="email" id="field-email" placeholder="seu@email.com" autocomplete="email"></div>
+    </div>
+    <button class="btn-result" id="btn-result" onclick="submitLead()" disabled>Ver meu resultado →</button>
+    <p class="privacy">🔒 Seus dados são confidenciais e não serão compartilhados</p>
+  </div>
+</div>
+
+<!-- RESULTADO -->
+<div id="screen-result" style="display:none">
+  <div id="res-content" style="animation:fadeUp .5s ease"></div>
+</div>
+
+<footer>
+  <div class="footer-logo">jaqueline ferreira</div>
+  <div class="footer-insta">@nutri.jaqueferreira</div>
+</footer>
+</div>
+
+<script>
+const Q=[
+  // BLOCO 1 — SONO
+  {d:'sono',b:'Sono',t:'Como você descreveria a qualidade do seu sono?',o:['Durmo bem e acordo descansada','Às vezes acordo no meio da noite mas volto a dormir','Acordo várias vezes ou tenho dificuldade para dormir','Meu sono é muito ruim — demoro para dormir e acordo exausta']},
+  {d:'sono',b:'Sono',t:'Como você se sente ao acordar pela manhã?',o:['Disposta e com energia para o dia','Um pouco lenta mas melhoro rápido','Cansada — preciso de muito tempo para "ligar"','Exausta — parece que não dormi nada']},
+  {d:'sono',b:'Sono',t:'Você acorda no meio da noite com calor, suor ou sensação de agitação?',o:['Não, durmo tranquila','Raramente','Com alguma frequência','Com muita frequência — isso me acorda toda noite']},
+  // BLOCO 2 — ENERGIA E MENTE
+  {d:'energia',b:'Energia & Mente',t:'Como está sua disposição ao longo do dia?',o:['Tenho energia consistente do começo ao fim','Tenho uma queda de tarde mas me recupero','Fico exausta depois do almoço e não me recupero','Estou sem energia o dia todo, independente do que faço']},
+  {d:'energia',b:'Energia & Mente',t:'Você tem dificuldade de concentrar, memória falhando ou névoa mental?',o:['Não, minha mente está clara','Às vezes levemente','Com frequência, me atrapalha no dia a dia','Todo dia — sinto que minha mente está sempre "travada"']},
+  {d:'energia',b:'Energia & Mente',t:'Você tem irritabilidade, ansiedade ou oscilações de humor sem motivo claro?',o:['Não, meu humor é estável','Sinto ansiedade mas sei a causa','Com certa frequência, sem motivo aparente','Muito intenso — afeta meus relacionamentos e meu trabalho']},
+  // BLOCO 3 — HORMÔNIOS E FASE DA VIDA
+  {d:'hormonio',b:'Fase da Vida',t:'Qual é a sua faixa etária?',o:['Até 35 anos','Entre 35 e 45 anos','Entre 45 e 55 anos','Acima de 55 anos']},
+  {d:'hormonio',b:'Fase da Vida',t:'Você tem algum desses sintomas hormonais?',o:['Não tenho nenhum desses sintomas','Ciclo irregular ou TPM intensa','Ondas de calor, suor noturno ou ressecamento','Vários desses sintomas ao mesmo tempo — está difícil de lidar']},
+  // BLOCO 4 — CONEXÃO INTESTINAL
+  {d:'intestino',b:'Conexão Intestinal',t:'Você tem inchaço abdominal, gases ou desconforto digestivo?',o:['Não tenho esse problema','Eventualmente','Com frequência, quase todo dia','Todo dia — faz parte da minha rotina']},
+  {d:'intestino',b:'Conexão Intestinal',t:'Você tem notado queda de cabelo, pele reagindo ou peso difícil de perder?',o:['Não percebi nada diferente','Um ou dois desses sintomas levemente','Dois desses sintomas de forma moderada','Os três — e já estou preocupada']}
+];
+
+const DIMS={
+  sono:{label:'Sono',cor:'#5A6E9A',fundo:'#EEF1F8',texto:'#2A3A5A'},
+  energia:{label:'Energia & Mente',cor:'#B07A20',fundo:'#FDF5E6',texto:'#6B4A10'},
+  hormonio:{label:'Fase da Vida',cor:'#7A5EA0',fundo:'#F4F0FA',texto:'#3A2060'},
+  intestino:{label:'Conexão Intestinal',cor:'#2D6B52',fundo:'#E8F4EF',texto:'#1A4D3A'}
+};
+
+const WA='5503598419647';
+let cur=0, ans=new Array(Q.length).fill(null);
+
+function startQuiz(){
+  document.getElementById('screen-intro').style.display='none';
+  document.getElementById('screen-quiz').style.display='block';
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function render(){
+  var q=Q[cur];
+  var pct=Math.round((cur/Q.length)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-label').textContent='Pergunta '+(cur+1)+' de '+Q.length;
+  document.getElementById('q-num').textContent='Pergunta '+String(cur+1).padStart(2,'0');
+  document.getElementById('q-bloco').textContent=q.b;
+  document.getElementById('q-text').textContent=q.t;
+  document.getElementById('btn-back').style.visibility=cur>0?'visible':'hidden';
+  var nb=document.getElementById('btn-next');
+  nb.textContent=cur===Q.length-1?'Ver resultado →':'Próxima →';
+  nb.disabled=ans[cur]===null;
+  var el=document.getElementById('opts');
+  el.innerHTML='';
+  q.o.forEach(function(o,i){
+    var b=document.createElement('button');
+    b.className='opt'+(ans[cur]===i?' sel':'');
+    b.innerHTML='<span class="opt-circle"></span><span>'+o+'</span>';
+    b.onclick=function(){ans[cur]=i;render()};
+    el.appendChild(b);
+  });
+  var qw=document.getElementById('q-wrap');
+  qw.style.animation='none';qw.offsetHeight;qw.style.animation='fadeUp .35s ease';
+}
+
+function goNext(){if(ans[cur]===null)return;if(cur<Q.length-1){cur++;render();}else showLead()}
+function goBack(){if(cur>0){cur--;render()}}
+
+function showLead(){
+  document.getElementById('screen-quiz').style.display='none';
+  document.getElementById('screen-lead').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  var n=document.getElementById('field-nome');
+  var z=document.getElementById('field-zap');
+  n.focus();
+  function v(){document.getElementById('btn-result').disabled=n.value.trim().length<2||z.value.trim().length<8}
+  n.addEventListener('input',v);z.addEventListener('input',v);
+}
+
+async function submitLead(){
+  var nome=document.getElementById('field-nome').value.trim();
+  var zap=document.getElementById('field-zap').value.trim();
+  var email=document.getElementById('field-email').value.trim();
+  if(!nome||zap.length<8)return;
+  var sc=calcScore();
+  try{
+    await fetch('https://script.google.com/macros/s/AKfycbw_RuMBfYwKMZkLlsLRjHy3LsoovIodBOfo55TEH7DlZK9Mrs2JQ9iTdS0M7twZwgA4/exec',{
+      method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        timestamp:new Date().toLocaleString('pt-BR'),
+        nome:nome,whatsapp:zap,email:email,
+        quiz:'Sono & Energia',
+        score:sc.health,nivel:getNivel(sc.health).label,
+        perfil:getPerfil(sc).label,
+        sono:Math.round(sc.dims.sono?sc.dims.sono.pct:0)+'%',
+        energia:Math.round(sc.dims.energia?sc.dims.energia.pct:0)+'%',
+        hormonio:Math.round(sc.dims.hormonio?sc.dims.hormonio.pct:0)+'%',
+        intestino:Math.round(sc.dims.intestino?sc.dims.intestino.pct:0)+'%',
+        respostas:ans.map(function(a,i){return Q[i].o[a]||'';}).join(' | ')
+      })
+    });
+  }catch(e){}
+  document.getElementById('screen-lead').style.display='none';
+  showResult(nome,sc);
+}
+
+function calcScore(){
+  var dims={};var total=0;var maxT=0;
+  Q.forEach(function(q,i){
+    var v=ans[i]||0;total+=v;maxT+=3;
+    if(!dims[q.d])dims[q.d]={score:0,max:0};
+    dims[q.d].score+=v;dims[q.d].max+=3;
+  });
+  Object.keys(dims).forEach(function(k){dims[k].pct=(dims[k].score/dims[k].max)*100});
+  var inflam=Math.round((total/maxT)*100);
+  return{health:100-inflam,inflam:inflam,dims:dims};
+}
+
+function getNivel(s){
+  if(s>=70)return{label:'Equilibrado',cor:'#2D6B52',badge:'b-verde',emoji:'🟢',key:'equilibrado'};
+  if(s>=45)return{label:'Atenção',cor:'#B07A20',badge:'b-amber',emoji:'🟡',key:'atencao'};
+  return{label:'Esgotado',cor:'#8B2E2E',badge:'b-red',emoji:'🔴',key:'esgotado'};
+}
+
+function getPerfil(sc){
+  var horm=sc.dims.hormonio?sc.dims.hormonio.pct:0;
+  var int=sc.dims.intestino?sc.dims.intestino.pct:0;
+  var idade=ans[6]||0; // pergunta da faixa etária
+  if(idade>=2&&horm>40){
+    return{label:'Hormonal + Intestinal',key:'hormonal'};
+  }
+  if(int>40){
+    return{label:'Intestinal',key:'intestinal'};
+  }
+  return{label:'Energético',key:'energetico'};
+}
+
+function showResult(nome,sc){
+  document.getElementById('screen-result').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  var nivel=getNivel(sc.health);
+  var perfil=getPerfil(sc);
+  var ordenadas=Object.entries(sc.dims).sort(function(a,b){return b[1].pct-a[1].pct});
+
+  var introTexto={
+    equilibrado:nome+', seu score indica que sua energia e sono estão razoavelmente equilibrados — mas os sintomas que você descreveu mostram que existem pontos de atenção que merecem cuidado agora.',
+    atencao:nome+', seu score indica que sua energia e sono estão comprometidos de forma moderada. O que você está sentindo já está afetando sua qualidade de vida — e tem uma causa identificável.',
+    esgotado:nome+', seu score indica esgotamento real. O que você descreveu aponta para um desequilíbrio profundo que está impactando seu sono, sua energia, seu humor e seu corpo. Isso tem solução.'
+  };
+
+  var perfilTextos={
+    hormonal:{
+      titulo:'Perfil Hormonal + Intestinal',
+      cor:'#7A5EA0',fundo:'#F4F0FA',
+      texto:'Seu perfil mostra que você está em uma fase de transição hormonal — perimenopausa ou menopausa — e que essa mudança está afetando diretamente seu intestino. Isso não é coincidência: os estrogênios influenciam a microbiota intestinal, e quando eles oscilam, o intestino sente. <strong>O resultado é um ciclo: hormônio oscila → intestino inflama → serotonina cai → sono piora → energia despenca.</strong> Tratar só o hormônio ou só o intestino resolve pela metade.'
+    },
+    intestinal:{
+      titulo:'Perfil Intestinal',
+      cor:'#2D6B52',fundo:'#E8F4EF',
+      texto:'Seu perfil mostra que a origem do seu cansaço e do seu sono ruim é intestinal. <strong>Mais de 90% da serotonina — o hormônio que regula o sono, o humor e a disposição — é produzida no intestino.</strong> Quando o intestino está inflamado ou desequilibrado, essa produção cai. O cansaço que você sente não é falta de força de vontade nem de disciplina. É o seu intestino pedindo socorro.'
+    },
+    energetico:{
+      titulo:'Perfil Energético',
+      cor:'#B07A20',fundo:'#FDF5E6',
+      texto:'Seu perfil mostra que seu cansaço e sono comprometido têm origem no desequilíbrio energético — e isso está conectado ao eixo intestino-cérebro. <strong>Quando o intestino não absorve nutrientes de forma adequada, as células não têm combustível suficiente.</strong> O resultado é um cansaço que nenhuma quantidade de café ou descanso resolve sozinho.'
+    }
+  };
+
+  var narrativas={
+    sono:{
+      alto:'Quando olhamos para o seu <strong>sono</strong>, você indicou dificuldade real — acordar várias vezes, não conseguir descansar, sensação de exaustão pela manhã. Isso não é insônia comum. É o seu sistema nervoso em estado de alerta constante — e o intestino inflama e desregula diretamente o ciclo do sono.',
+      medio:'Quando olhamos para o seu <strong>sono</strong>, você indicou instabilidade — noites boas alternadas com noites ruins. Esse padrão irregular é sinal de que algo está perturbando o seu ritmo circadiano, que é regulado em parte pela serotonina produzida no intestino.',
+      baixo:'Quando olhamos para o seu <strong>sono</strong>, ele está relativamente estável. Mas você indicou que não acorda completamente descansada — o que sugere que a qualidade do sono pode ser melhorada com ajustes na saúde intestinal.'
+    },
+    energia:{
+      alto:'Quando olhamos para sua <strong>energia e estado mental</strong>, o quadro é claro: você está funcionando no limite. Névoa mental, irritabilidade, queda de energia ao longo do dia — tudo isso tem a mesma origem. <strong>O intestino inflamado não absorve os nutrientes necessários para produzir energia celular.</strong> Você não está fraca. Está mal abastecida.',
+      medio:'Quando olhamos para sua <strong>energia e mente</strong>, você indicou oscilações que atrapalham seu dia. Alguns momentos você funciona bem, outros simplesmente trava. Esse padrão é característico de quando o eixo intestino-cérebro está sob pressão.',
+      baixo:'Quando olhamos para sua <strong>energia</strong>, ela está razoável — mas você indicou quedas pontuais. O intestino influencia diretamente a produção de energia. Pequenos ajustes podem fazer grande diferença na sua disposição diária.'
+    },
+    hormonio:{
+      alto:'Quando olhamos para sua <strong>fase da vida</strong>, você indicou sintomas hormonais significativos — ondas de calor, suor noturno, ciclo irregular. <strong>O que muitas mulheres não sabem é que os hormônios e o intestino estão profundamente conectados.</strong> O estrogênio influencia a microbiota, e a microbiota influencia o estrogênio. Quando um desregula, o outro sente.',
+      medio:'Quando olhamos para sua <strong>fase da vida</strong>, você indicou alguns sintomas hormonais. Essa transição — seja perimenopausa ou oscilações do ciclo — afeta diretamente a qualidade do sono e da energia, especialmente quando o intestino já está comprometido.',
+      baixo:'Quando olhamos para sua <strong>fase da vida</strong>, os sintomas hormonais são leves ou ausentes. Isso é positivo — significa que a origem do seu cansaço e sono ruim provavelmente está mais relacionada ao intestino do que aos hormônios.'
+    },
+    intestino:{
+      alto:'Quando olhamos para a <strong>conexão intestinal</strong>, os sinais são claros: inchaço, queda de cabelo, pele reagindo, peso resistente. Esses sintomas parecem não ter relação entre si — mas têm. Todos apontam para o mesmo lugar: um intestino inflamado que já está se manifestando em todo o corpo.',
+      medio:'Quando olhamos para a <strong>conexão intestinal</strong>, você indicou sintomas moderados. O intestino está enviando sinais que vão além da digestão — e isso está contribuindo para o seu cansaço e sono ruim.',
+      baixo:'Quando olhamos para a <strong>conexão intestinal</strong>, os sintomas são leves. Mas vale saber: o intestino influencia o sono e a energia mesmo quando os sintomas digestivos não são intensos.'
+    }
+  };
+
+  var segs=Array.from({length:10},function(_,i){
+    var active=(i+1)*10<=sc.inflam;
+    var color=i<3?'#2D6B52':i<6?'#B07A20':'#8B2E2E';
+    return'<div class="seg" style="background:'+(active?color:'#E8E5E0')+'"></div>';
+  }).join('');
+
+  var narrativaHtml='';
+  ordenadas.forEach(function(e){
+    var k=e[0];var v=e[1];var d=DIMS[k];if(!d)return;
+    var pct=v.pct;
+    var nivel=pct>60?'alto':pct>30?'medio':'baixo';
+    var txt=narrativas[k]?narrativas[k][nivel]:'';
+    if(txt){
+      narrativaHtml+='<div class="narrativa-bloco"><span class="narrativa-dim-tag" style="background:'+d.fundo+';color:'+d.cor+'">'+d.label+'</span><p class="narrativa-texto">'+txt+'</p></div>';
+    }
+  });
+
+  var ctaTexto={
+    equilibrado:'Você está em um bom momento para agir preventivamente. Com ajustes direcionados no intestino, é possível melhorar ainda mais a qualidade do seu sono e da sua energia.',
+    atencao:'O que você está sentindo tem padrão, tem causa e tem solução. Com a abordagem certa — que trata a origem, não só o sintoma — os resultados aparecem nos primeiros 30 dias.',
+    esgotado:'Você não precisa continuar assim. O que falta não é mais força de vontade nem mais suplemento genérico. É um protocolo que trate a causa raiz do seu esgotamento.'
+  };
+
+  var perfilData=perfilTextos[perfil.key];
+  var waMsg=encodeURIComponent('Olá, Jaqueline! Acabei de fazer o diagnóstico de Sono & Energia. Meu score foi '+sc.health+'/100 — '+nivel.label+'. Perfil: '+perfil.label+'. Gostaria de conversar.');
+  var waLink='https://wa.me/'+WA+'?text='+waMsg;
+
+  document.getElementById('res-content').innerHTML=
+    '<div class="score-hero">'+
+      '<p class="score-hero-tag">Score de Energia & Sono — '+nome+'</p>'+
+      '<div class="score-row">'+
+        '<span class="score-num" style="color:'+nivel.cor+'">'+sc.health+'</span>'+
+        '<div class="score-meta">'+
+          '<p class="score-meta-label">de 100 pontos</p>'+
+          '<span class="score-badge '+nivel.badge+'">'+nivel.emoji+' '+nivel.label+'</span>'+
+        '</div>'+
+      '</div>'+
+      '<div class="seg-bar">'+segs+'</div>'+
+      '<div class="seg-labels"><span>Esgotado</span><span>Atenção</span><span>Equilibrado</span></div>'+
+      '<p class="score-intro">'+introTexto[nivel.key]+'</p>'+
+    '</div>'+
+
+    '<div class="perfil-card" style="background:'+perfilData.fundo+';border-color:'+perfilData.cor+'30">'+
+      '<p class="perfil-tag" style="color:'+perfilData.cor+'">✦ Seu perfil</p>'+
+      '<p class="perfil-titulo" style="color:'+perfilData.cor+'">'+perfilData.titulo+'</p>'+
+      '<p class="perfil-texto">'+perfilData.texto+'</p>'+
+    '</div>'+
+
+    '<div class="dims-section">'+
+      '<p class="dims-title">Análise por dimensão</p>'+
+      '<div class="dims-grid">'+
+        ordenadas.map(function(e){var k=e[0];var v=e[1];var d=DIMS[k];return(
+          '<div class="dim-card">'+
+            '<p class="dim-label">'+(d?d.label:k)+'</p>'+
+            '<div class="dim-bar-wrap"><div class="dim-bar" style="width:'+v.pct+'%;background:'+(v.pct>60?'#8B2E2E':v.pct>30?'#B07A20':'#2D6B52')+'"></div></div>'+
+            '<p class="dim-val">'+Math.round(v.pct)+'% comprometido</p>'+
+          '</div>'
+        )}).join('')+
+      '</div>'+
+    '</div>'+
+
+    '<div class="narrativa-section">'+
+      '<p class="narrativa-section-title">O que seus sintomas estão dizendo</p>'+
+      narrativaHtml+
+    '</div>'+
+
+    '<div class="ponte-card">'+
+      '<p class="narrativa-dim-tag" style="background:#E8F4EF;color:#2D6B52">A conexão que ninguém explica</p>'+
+      '<p class="ponte-titulo">Por que o intestino está por trás do seu sono</p>'+
+      '<p class="ponte-texto">'+nome+', existe uma conexão direta entre o intestino e o cérebro — chamada de eixo intestino-cérebro. <strong>Mais de 90% da serotonina, o neurotransmissor que regula o sono, o humor e a disposição, é produzida no intestino.</strong> Quando o intestino está inflamado ou desequilibrado, essa produção cai — e o sono e a energia sofrem as consequências. Tratar o sono sem tratar o intestino é como tentar apagar um incêndio regando as folhas.</p>'+
+    '</div>'+
+
+    '<div class="cta-card">'+
+      '<h2>Foi por isso que eu criei o Método VITA.</h2>'+
+      '<p>'+nome+', o que você descreveu tem padrão. Tem causa. E tem solução.</p>'+
+      '<p>'+ctaTexto[nivel.key]+'</p>'+
+      '<p>O Método VITA foi construído para tratar a origem do cansaço, do sono ruim e dos desequilíbrios que afetam a sua qualidade de vida — com um protocolo em fases, claro e personalizado para o seu caso.</p>'+
+      '<a href="'+waLink+'" target="_blank" class="btn-cta">'+
+        '<span style="font-size:18px">💬</span>'+
+        'Continuar — descobrir meu plano no WhatsApp'+
+      '</a>'+
+    '</div>'+
+
+    '<button class="btn-refazer" onclick="refazer()">Refazer o teste</button>'+
+    '<p class="disclaimer">Este score é uma ferramenta educativa de triagem e não substitui avaliação clínica. Apenas um profissional de saúde pode diagnosticar e tratar condições intestinais e hormonais. · @nutri.jaqueferreira</p>';
+}
+
+function refazer(){
+  cur=0;ans=new Array(Q.length).fill(null);
+  document.getElementById('screen-result').style.display='none';
+  document.getElementById('screen-lead').style.display='none';
+  document.getElementById('screen-quiz').style.display='none';
+  document.getElementById('screen-intro').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
